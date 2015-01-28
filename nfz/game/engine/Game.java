@@ -9,7 +9,7 @@ import nfz.game.logic.gameobjects.Player;
 
 /**
  * 
- * @author BBPG
+ * @author BBPG, Phar0x
  *
  */
 public class Game {
