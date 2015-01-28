@@ -12,8 +12,7 @@ public class Stats {
 	private int agility;
 	private int intelligence;
 	private float speed;
-	private float xp;
-	
+
 	public int getMaxHealth() {
 		return maxHealth;
 	}
@@ -84,14 +83,6 @@ public class Stats {
 
 	public void setIntelligence(int i) {
 		this.intelligence = i;
-	}
-
-	public float getXp() {
-		return xp;
-	}
-
-	public void setXp(float xp) {
-		this.xp = xp;
 	}
 	
 	public float getSpeed() {

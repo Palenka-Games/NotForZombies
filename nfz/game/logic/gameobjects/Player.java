@@ -19,10 +19,13 @@ public class Player extends GameObject{
 	public static final float PLAYER_SY = 32;
 	
 	private Stats stats = new Stats();
+	private float xp;
+	private int xpNeeded;
 	
 	public Player (float x, float y) {
 		super(x, y, 0.1f, 1f, 0.5f, PLAYER_SX, PLAYER_SY);
-		stats.setXp(0);
+		xp=0;
+		xpNeeded=50;
 		stats.setCurrHealth(100);
 		stats.setMaxHealth(100);
 		stats.setCurrEnergy(100);
@@ -94,7 +97,19 @@ public class Player extends GameObject{
 	
 
 	public void addXP(float amt) {
-		stats.setXp(stats.getXp()+amt);
+		this.xp += amt;
+		if(xp>=xpNeeded){
+			levelUP();
+			xp-=xpNeeded;
+		}
 	}
 	
+	private void levelUP() {
+		stats.setLevel(stats.getLevel()+1);
+		xpNeeded *= 2; 
+	}
+
+	public float getXp() {
+		return xp;
+	}
 }
