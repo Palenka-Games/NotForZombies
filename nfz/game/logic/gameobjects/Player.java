@@ -11,20 +11,28 @@ import org.lwjgl.util.vector.Vector2f;
 
 import nfz.game.graphics.Sprite;
 import nfz.game.logic.GameObject;
+import nfz.game.logic.Stats;
 
 public class Player extends GameObject{
 	
 	public static final float PLAYER_SX = 32;
 	public static final float PLAYER_SY = 32;
 	
-	private int hp;
-	
-	private float xp;
+	private Stats stats = new Stats();
 	
 	public Player (float x, float y) {
 		super(x, y, 0.1f, 1f, 0.5f, PLAYER_SX, PLAYER_SY);
-		xp = 151;
-		hp = 10;
+		stats.setXp(0);
+		stats.setCurrHealth(100);
+		stats.setMaxHealth(100);
+		stats.setCurrEnergy(100);
+		stats.setMaxEnergy(100);
+		stats.setArmor(0);
+		stats.setLevel( 1);
+		stats.setStrength(5);
+		stats.setAgility(5);
+		stats.setIntelligence(5);
+		stats.setSpeed(1);
 	}
 	
 	public void update() {
@@ -80,51 +88,13 @@ public class Player extends GameObject{
 	private void move(float magX, float magY) {
 		//x += getSpeed() * Math.cos(Math.toRadians(rot));
 		//y += getSpeed() * Math.sin(Math.toRadians(rot));
-		x += getSpeed() * magX;
-		y += getSpeed() * magY;
+		x += stats.getSpeed() * magX;
+		y += stats.getSpeed() * magY;
 	}
 	
+
 	public void addXP(float amt) {
-		xp += amt;
-	}
-	
-	/**
-	 * Calculates max hp of player
-	 * @return
-	 */
-	public int getMaxHealth() {
-		//to do : proper calculation
-		return getLevel() * 10;
-	}
-	/*
-	 * return current hp
-	 */
-	public int getCurrentHealth() {
-		int max = getMaxHealth();
-		if (hp > max) {
-			hp = max;
-		}
-		return hp;
-	}
-	
-	/**
-	 * return str of player
-	 * @return
-	 */
-	public float getStrength() {
-		return getLevel() * 4f;
-	}
-	
-	/**
-	 * calculates speed
-	 * @return
-	 */
-	public float getSpeed() {
-		return 4f;
-	}
-	
-	public int getLevel() {
-		return (int)(xp / 50) + 1;
+		stats.setXp(stats.getXp()+amt);
 	}
 	
 }
